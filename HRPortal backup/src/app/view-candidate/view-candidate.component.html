@@ -1,0 +1,62 @@
+
+<app-header></app-header>
+<div class="body">
+<div class="container-fluid">
+  <h2 class="text-center font-weight-bold mt-4">Candidates List</h2> 
+  <hr class="pb-0">
+</div>
+<nav class="ml-3 mr-3 ">
+  <input type="text" class="width mb-2" placeholder="Search.." name="search" [(ngModel)]="searchfilter">
+  <button mat-raised-button color="accent" (click)="add()" style="margin-bottom: 10px;">Add New Candidate</button>
+</nav>
+<div class="table-responsive-sm ml-3 h-75 mr-3">          
+  <table class="table table-bordered table-striped ">
+    <thead class="thead-light">
+      <tr>
+        
+        <th (click)="sort('firstName')">First Name</th>
+        <th (click)="sort('lastName')">Last Name</th>
+        <th (click)="sort('email')">Email</th>
+        <th (click)="sort('phone')">Mobile No</th>
+        <th (click)="sort('birth_date')">Birth Date</th>
+        <th (click)="sort('gender')">Gender</th>
+        <th (click)="sort('current_location')">Current Location</th>
+        <th (click)="sort('company')">Company Name</th>
+        <th (click)="sort('address')">Address</th>
+        <th (click)="sort('qualification')">Qualification</th>
+        <th (click)="sort('experience')">Experience</th>
+       <th>Actions</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidate of candidates  | async | orderBy: key : reverse | paginate: {itemsPerPage:5,currentPage:p} | filter:searchfilter" >
+        
+        <td>{{candidate.firstName}}</td>
+        <td>{{candidate.lastName}}</td>
+        <td>{{candidate.email | lowercase}}</td>
+        <td>{{candidate.phone}}</td>
+        <td>{{candidate.birth_date}}</td>
+        <td>{{candidate.gender}}</td>
+        <td>{{candidate.current_location}}</td>
+        <td>{{candidate.company}}</td>
+        <td>{{candidate.address}}</td>
+        <td>{{candidate.qualification}}</td>
+        <td>{{candidate.experience}}</td>
+       <td>
+        <button class="mr-2" mat-raised-button color="primary" (click)="updateCandidate(candidate.id)" style="margin-bottom:2px;">Update</button>
+        <button class="mr-2" mat-raised-button color="accent"(click)="candidateDetails(candidate.id)" style="margin-bottom:2px;">Details</button>
+        <button  mat-raised-button color="warm" (click)="deleteCandidate(candidate.id)" style="margin-bottom:2px;">Delete</button>
+         </td>
+      </tr>
+     </tbody>
+   
+  </table>
+  
+  <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+  
+</div>
+
+  <footer>
+  <app-footer></app-footer>  
+</footer>

@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<mat-card class="w-75 h-75 mb-5 mt-5  mx-auto shadow-lg">
+<div>
+  <mat-card-title class="text-center font-weight-bold mt-4">Candidate Details</mat-card-title> 
+  <hr>
+</div>
+
+<mat-card-content>
+     <div *ngIf="candidate" class="mx-auto">
+            <div>
+              <label class="text-center"><b>First Name: </b></label> {{candidate.firstName}}
+            </div>
+            <div>
+              <label class="text-center"><b>Last Name: </b></label> {{candidate.lastName}}
+            </div>
+            <div>
+              <label class="text-center"><b>Email Id: </b></label> {{candidate.email}}
+            </div> 
+            <div>
+                <label class="text-center"><b>Mobile No.: </b></label> {{candidate.phone}}
+              </div>
+              <div>
+                <label class="text-center"><b>Address: </b></label> {{candidate.address}}
+              </div> 
+              <div>
+                <label class="text-center"><b>Gender: </b></label> {{candidate.gender}}
+              </div> 
+              <div>
+                <label class="text-center"><b>Company Name : </b></label> {{candidate.company}}
+              </div> 
+              <div>
+                <label class="text-center"><b>Current Location: </b></label> {{candidate.current_location}}
+              </div> 
+              <div>
+                <label class="text-center"><b>Qualification: </b></label> {{candidate.qualification}}
+              </div> 
+              <div>
+                <label class="text-center"><b>Birth Date: </b></label> {{candidate.birth_date}}
+              </div> 
+              <div>
+                <label class="text-center"><b>Experience: </b></label> {{candidate.experience}}
+              </div> 
+          </div>
+          
+          <br>
+          <br>
+          <button (click)="list()" mat-raised-button color="accent">BACK TO CANDIDATE LIST</button><br>
+      
+        </mat-card-content>
+        </mat-card>
+          <app-footer></app-footer>

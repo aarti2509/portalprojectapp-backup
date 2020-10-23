@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div>
+<mat-card class="w3  mb-4 mt-5  mx-auto shadow-lg">
+<div>
+  <mat-card-title></mat-card-title> 
+  </div>
+
+<mat-card-content>
+  <button (click)="list()" mat-raised-button color="accent" class="float-right ">Go Back</button>
+  <div class="container">
+    
+      <span>
+        <img src="../../assets/u1.jpg">
+      </span>
+    
+    
+  
+       <div class=" float-right ml-5"><h1>{{candidate.firstName}} {{candidate.lastName}}</h1>
+        <hr>
+        Email Id: {{candidate.email}} <br>
+        Mobile No.: {{candidate.phone}}<br>
+        Address: {{candidate.address}}<br>
+        Gender: {{candidate.gender}}<br>
+        Company Name : {{candidate.company}}<br>
+        Current Location: {{candidate.current_location}}<br>
+        Qualification: {{candidate.qualification}}<br>
+        Birth Date: {{candidate.birth_date}}<br>
+        Experience: {{candidate.experience}}<br>
+      
+
+       </div>
+      </div>
+   </mat-card-content>
+        </mat-card>
+      </div>
+      <footer>
+          <app-footer></app-footer>
+      </footer>

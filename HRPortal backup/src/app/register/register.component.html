@@ -1,0 +1,182 @@
+<mat-toolbar color="accent" class="mat-elevation-z6">
+  <span><mat-icon>eco</mat-icon>HRPortal</span>
+</mat-toolbar>  
+
+<mat-card class="w1 mb-4 mt-4  mx-auto shadow-lg ">
+  <div>
+    <mat-card-title class="text-center font-weight-bold mt-2">Registration</mat-card-title> 
+    <hr>
+   </div>
+
+  <mat-card-content>
+<div [hidden]="submitted">
+<form  #regiform="ngForm"  (ngSubmit)="onSubmit()">
+   
+  
+    <div class="form-row font-weight-bold ">
+        <div class="form-group col-sm-6 col-12">
+        <label for="fname "> First Name</label>
+        <input type="text" class="form-control"  id="first_name" placeholder="enter first name" pattern="^[a-zA-Z]*$" name=" first_name" [(ngModel)]="humanResource.first_name" required
+        #first_name="ngModel" [class.is-invalid]="first_name.invalid && first_name.touched">
+      <!-- <small class="text-danger" [class.d-none]="fname.valid || fname.untouched">First Name is required</small>-->
+     
+      <div *ngIf="first_name.errors && (first_name.invalid && first_name.touched)">
+        <small class="text-danger" *ngIf="first_name.errors.required">First Name  is required</small>
+        <small class="text-danger" *ngIf="first_name.errors.pattern">First name must be in charaters</small>
+         
+      </div>
+    
+    </div>
+      <div class="form-group col-sm-6 col-12">
+        <label for="lname" >Last Name</label>
+        <input type="text" class="form-control" id="last_name" pattern="^[a-zA-Z]*$"  placeholder="enter last name" name="last_name" [(ngModel)]="humanResource.last_name" required #last_name="ngModel"
+        [class.is-invalid]=" last_name.invalid &&  last_name.touched">
+       <!-- <small class="text-danger" [class.d-none]="last_name.valid || last_name.untouched">Last Name is required</small>-->
+      <div *ngIf="last_name.errors && (last_name.invalid && last_name.touched)">
+          <small class="text-danger" *ngIf="last_name.errors.required">Last Name is required</small>
+          <small class="text-danger" *ngIf="last_name.errors.pattern">Last name must be in charaters</small>
+        </div>
+      
+      </div>
+    </div>
+    <div class="form-row font-weight-bold">
+      <div class="form-group col-sm-6 col-12">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="enter the email" name="email" [(ngModel)]="humanResource.email" required #email="ngModel"
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  [class.is-invalid]="email.invalid && email.touched">
+  
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+          <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+          <small class="text-danger" *ngIf="email.errors.pattern"> please enter valid Email address</small>
+        </div>
+        
+      </div>
+     
+    
+      <div class="form-group col-sm-6 col-12">
+        <label for="phone">Mobile Number</label>
+        <input type="text" class="form-control" id="phone" pattern="[0-9]{10}" name="phone" maxlength="10" #phone='ngModel' [(ngModel)]="humanResource.phone"  required placeholder="enter the Mobile Number">
+        <div *ngIf='phone.touched && phone.invalid'> 
+          <small class="text-danger" *ngIf='phone.errors.required'>
+              Mobile number is required
+          </small>
+          <small class="text-danger" *ngIf='phone.errors.pattern'>
+              mobile number must be in 10 digits
+          </small>
+        </div>
+      </div>
+      </div>
+    <div class="form-row font-weight-bold">
+      <div class="form-group col-sm-6 col-12">
+        <label for="bd">Birth Date</label>
+        <input type="date" class="form-control" id="dob" name="dob"  [(ngModel)]="humanResource.dob">
+      </div>
+      <fieldset class="form-group col-sm-6 col-12 ">
+        <div class="row font-weight-bold">
+          <legend class="col-form-label col-sm-2 pt-0 ml-2">Gender</legend>
+          <div class="col-sm-10 ">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio"  id="gender" name="gender" [(ngModel)]="humanResource.gender" value="male" checked >
+              <label class="form-check-label" for="gridRadios1">
+                Male
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio"  id="gender1" value="female" name="gender" [(ngModel)]="humanResource.gender">
+              <label class="form-check-label" for="gridRadios2">
+                Female
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="gender3" value="other" name="gender" [(ngModel)]="humanResource.gender">
+                <label class="form-check-label" for="gridRadios3">
+                  Other
+                </label>
+              </div>
+            </div>
+          </div>
+      </fieldset>
+      </div>
+      
+   
+    <div class="form-row font-weight-bold">   
+     <div class="form-group col-sm-6 col-12">
+        <label for="cloc">Current Location</label>
+        <input type="text" class="form-control" id="current_location" name="current_location" min="15" placeholder="enter the current location" [(ngModel)]="humanResource.current_location" required 
+        #current_location="ngModel" [class.is-invalid]="current_location.invalid && current_location.touched">
+       <small class="text-danger" [class.d-none]="current_location.valid || current_location.untouched">Current Location is required</small>
+     </div>
+     <div class="form-group col-sm-6 col-12">
+            <label for="cnm">Company Name</label>
+            <input type="text" class="form-control" id="company" name="company"  min="15" placeholder="enter the company name" [(ngModel)]="humanResource.company" required
+            #company="ngModel" [class.is-invalid]="company.invalid && company.touched" >
+           <small class="text-danger" [class.d-none]="company.valid || company.untouched">Company Name is required</small>
+      </div>
+      </div>
+
+      <div class="form-row font-weight-bold">   
+        <div class="form-group col-sm-6 col-12 ">
+       <label for="address">Address</label>
+       <textarea class="form-control" id="address" name="address"  min="30"  placeholder="enter the address information" [(ngModel)]="humanResource.address" required
+       #address="ngModel"  [class.is-invalid]="address.invalid && address.touched"></textarea>
+       <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required</small>
+       </div>
+
+      <div class="form-group col-sm-6 col-12">
+        <label for="pincode" class="font-weight-bold">Pincode</label>
+        <input type="pincode" class="form-control" placeholder="Enter the pincode" id="pincode" name="pincode" [(ngModel)]="humanResource.pincode" required 
+        #pincode="ngModel" maxlength="6" pattern="[0-9]{6}" [class.is-invalid]="pincode.invalid && pincode.touched" >
+       <!-- <small class="text-danger" [class.d-none]="pincode.valid || pincode.untouched">Pincode  is required</small> -->
+       <div *ngIf='pincode.touched && pincode.invalid'>
+        <small class="text-danger" *ngIf='pincode.errors.required'>
+          Pincode is required
+        </small>
+        <small class="text-danger" *ngIf='pincode.errors.pattern'>
+            pincode code must be in digits
+        </small>
+       </div>
+      </div>
+       </div>
+
+        <div class="form-row font-weight-bold">
+        <div class="form-group col-sm-6 col-12">
+            <label for="pass">Password</label>
+            <input type="password" class="form-control" id="password" name="password"  placeholder="enter the password"  [(ngModel)]="humanResource.password" required
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,15}" #password="ngModel"  [class.is-invalid]="password.invalid && password.touched" >
+          <!--  <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small> -->
+         <div *ngIf='password.touched && password.invalid'>
+            <small class="text-danger" *ngIf='password.errors.required'>
+              Password is required
+            </small>
+            <small class="text-danger" *ngIf='password.errors.pattern'>
+                This password contains at least one Uppercase and one lowercase,
+                password must contains minimum 8 charactors
+            </small>
+          </div>
+        </div>
+     
+          <div class="form-group col-sm-6 col-12 ">
+            <label for="cpass" >Confirm Password</label>
+            <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="enter the confirm password"  required  [(ngModel)]="humanResource.cpassword"
+            #cpassword="ngModel"  [class.is-invalid]="cpassword.invalid && cpassword.touched">
+            <small class="text-danger" [class.d-none]="(cpassword.value==password.value) || cpassword.untouched">Password & Confirm Password should be match</small>   
+         </div>
+         </div>
+        <div class="form-group row ">
+            <div class="col-sm-8  text-center mx-auto mt-3">
+              <button [disabled]="regiform.form.invalid" type="submit" mat-raised-button color="accent" class="mr-3">REGISTER</button>
+             <button type="submit" (click)="backToLogin()" mat-raised-button color="accent">BACK</button>
+            </div>
+        </div>
+         </form>
+        </div>
+      </mat-card-content>
+      </mat-card>
+
+       <!--  <div [hidden]="!submitted">
+          <h4 class="text-success">Your Registration successfully!</h4>
+           <button class="btn btn-success" (click)="newCandidate()">OK</button> 
+        </div>-->
+
+        <app-footer></app-footer>
+
